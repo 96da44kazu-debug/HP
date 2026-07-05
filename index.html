@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>よい科学者育成所</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght=400;700;900&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f4f6f8;
+            color: #333333;
+            line-height: 1.7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 🌐 ヘッダーエリア */
+        header {
+            width: 100%;
+            background-color: #2b3a4a;
+            color: #ffffff;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .site-title {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: bold;
+            opacity: 0.8;
+            transition: opacity 0.2s, color 0.2s;
+        }
+
+        nav a:hover {
+            opacity: 1;
+            color: #03dac6;
+        }
+
+        /* 📄 メインコンテンツ */
+        .main-container {
+            max-width: 750px;
+            width: 100%;
+            background: #ffffff;
+            margin: 40px 20px;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.04);
+        }
+
+        .intro-section {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            font-weight: 500;
+        }
+
+        /* 🧪 科学者の名言ディスプレイエリア */
+        .quote-box {
+            background-color: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 35px;
+            text-align: center;
+            position: relative;
+        }
+
+        .quote-text {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .quote-author {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .notice-box {
+            background-color: #e8f4fd;
+            border-left: 4px solid #007bff;
+            color: #0056b3;
+            padding: 15px 20px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-bottom: 40px;
+        }
+
+        .creator-work-section {
+            background: #fafafa;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2b3a4a;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .work-desc {
+            font-size: 0.95rem;
+            color: #555555;
+            margin-bottom: 20px;
+        }
+
+        .rikagame-banner-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 18px 25px;
+            background-color: #111217;
+            border: 3px solid #2a2b36;
+            border-radius: 10px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .rikagame-banner-link:hover {
+            border-color: #ff007f;
+            background-color: #1f0b17;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(255, 0, 127, 0.4);
+        }
+
+        .rikagame-logo-area {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .rikagame-main-title {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            line-height: 1.2;
+        }
+
+        .rikagame-sub-title {
+            color: #03dac6;
+            font-size: 0.75rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .rikagame-icon-mark {
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+        }
+        .rikagame-mark-c { color: #ffffff; }
+        .rikagame-mark-t { color: #ff007f; }
+
+        footer {
+            width: 100%;
+            margin-top: auto;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #718096;
+            background-color: #ffffff;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 480px) {
+            header { justify-content: center; text-align: center; padding: 15px; }
+            nav ul { gap: 12px; }
+            nav a { font-size: 0.85rem; }
+            .main-container { padding: 20px; margin: 20px 10px; }
+        }
+    </style>
+    <script src="quotes_data.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="site-title">よい科学者育成所</div>
+        <nav>
+            <ul>
+                <li><a href="#home">ホーム</a></li>
+                <li><a href="#column">理科コラム</a></li>
+                <li><a href="#lab">実験室</a></li>
+                <li><a href="#about">このサイトについて</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        
+        <div class="intro-section">
+            <p>理科を学び、理科について何か気づきのある、そんなホームページです。</p>
+        </div>
+
+        <!-- 🧪 ランダム名言ディスプレイエリア -->
+        <div class="quote-box">
+            <div class="quote-text" id="display-quote-text">「探査中...」</div>
+            <div class="quote-author" id="display-quote-author">―― 科学者</div>
+        </div>
+
+        <div class="notice-box">
+            📢 ホームページはこれからいろいろアップデートしていくよ！新しいカテゴリーの記事も追加予定なのでお楽しみに！
+        </div>
+
+        <div class="creator-work-section">
+            <h3 class="section-title">🕹️ 作者がこんなこともやってます！</h3>
+            <p class="work-desc">
+                当サイトの管理人が自作した、理科の知識でサバイバルする学習ミニゲームポータルです。<br>
+                授業の復習や、ちょっとした力試しにぜひ挑戦してみてください！
+            </p>
+            
+            <!-- 💡 リンク先を指定の公開URLへ書き換えました -->
+            <a href="https://96da44kazu-debug.github.io/rika-game-ex/" class="rikagame-banner-link">
+                <div class="rikagame-logo-area">
+                    <span class="rikagame-main-title">リカゲーム</span>
+                    <span class="rikagame-sub-title">RIKA GAME PORTAL v2.7</span>
+                </div>
+                <div class="rikagame-icon-mark">
+                    <span class="rikagame-mark-c">○</span><span class="rikagame-mark-t">△</span><span style="color:#ff007f;">□</span>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+    <footer>
+        最終更新日：2026年7月5日 | © よい科学者育成所 All Rights Reserved.
+    </footer>
+
+    <script>
+        window.onload = function() {
+            if (typeof SCIENTIST_QUOTES !== 'undefined' && SCIENTIST_QUOTES.length > 0) {
+                const randomIndex = Math.floor(Math.random() * SCIENTIST_QUOTES.length);
+                const chosenQuote = SCIENTIST_QUOTES[randomIndex];
+                
+                document.getElementById('display-quote-text').innerText = `“ ${chosenQuote.text} ”`;
+                document.getElementById('display-quote-author').innerText = `―― ${chosenQuote.author}`;
+            }
+        };
+    </script>
+</body>
+</html>
