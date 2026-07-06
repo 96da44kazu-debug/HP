@@ -66,7 +66,7 @@
 
         /* 📄 メインコンテンツ */
         .main-container {
-            max-width: 750px;
+            max-width: 800px;
             width: 100%;
             background: #ffffff;
             margin: 40px 20px;
@@ -86,6 +86,30 @@
             font-size: 1.1rem;
             color: #4a5568;
             font-weight: 500;
+        }
+
+        /* 📊 【新設】アクセスカウンターエリア（数字が累積保存される仕組み） */
+        .counter-box {
+            text-align: center;
+            margin: -10px auto 30px auto;
+            padding: 10px 20px;
+            background: #f8fafc;
+            border-radius: 30px;
+            max-width: 340px;
+            border: 1px solid #e2e8f0;
+            font-size: 0.9rem;
+            color: #475569;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .counter-number {
+            color: #007bff;
+            font-size: 1.1rem;
+            font-family: monospace, sans-serif;
+            letter-spacing: 1px;
         }
 
         /* 🧪 科学者の名言ディスプレイエリア */
@@ -114,6 +138,7 @@
             text-align: right;
         }
 
+        /* 📢 アップデート予告 */
         .notice-box {
             background-color: #e8f4fd;
             border-left: 4px solid #007bff;
@@ -125,22 +150,138 @@
             margin-bottom: 40px;
         }
 
+        /* 各種セクションの共通スタイル */
+        .content-section {
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2b3a4a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-left: 4px solid #2b3a4a;
+            padding-left: 10px;
+        }
+
+        /* 📄 【新設】理科コラムカードグリッド */
+        .column-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+
+        .column-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .column-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border-color: #cbd5e1;
+        }
+
+        .column-tag {
+            font-size: 0.75rem;
+            background: #e8f4fd;
+            color: #0056b3;
+            padding: 2px 8px;
+            border-radius: 4px;
+            align-self: flex-start;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .column-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .column-card p {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        /* ✏️ 【新設】勉強ツールリスト */
+        .tool-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .tool-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .tool-item:hover {
+            background: #f1f5f9;
+        }
+
+        .tool-info h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #334155;
+        }
+
+        .tool-info p {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .tool-btn {
+            background: #2b3a4a;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 6px 14px;
+            border-radius: 4px;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .tool-btn:hover {
+            background: #1e2935;
+        }
+
+        /* 🕹️ 作者実績紹介コーナー（リカゲーム） */
         .creator-work-section {
             background: #fafafa;
             border: 1px solid #e2e8f0;
             border-radius: 8px;
             padding: 25px;
-            margin-top: 20px;
+            margin-top: 30px;
         }
 
-        .section-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #2b3a4a;
+        .creator-work-section .section-title {
+            border-left: none;
+            padding-left: 0;
             margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .work-desc {
@@ -218,7 +359,10 @@
             header { justify-content: center; text-align: center; padding: 15px; }
             nav ul { gap: 12px; }
             nav a { font-size: 0.85rem; }
-            .main-container { padding: 20px; margin: 20px 10px; }
+            .main-container { padding: 25px 15px; margin: 20px 10px; }
+            .column-grid { grid-template-columns: 1fr; }
+            .tool-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .tool-btn { align-self: flex-end; }
         }
     </style>
     <script src="quotes_data.js"></script>
@@ -231,36 +375,79 @@
             <ul>
                 <li><a href="#home">ホーム</a></li>
                 <li><a href="#column">理科コラム</a></li>
-                <li><a href="#lab">実験室</a></li>
-                <li><a href="#about">このサイトについて</a></li>
+                <li><a href="#tools">勉強ツール</a></li>
+                <li><a href="#game">リカゲーム</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="main-container">
+    <div class="main-container" id="home">
         
         <div class="intro-section">
             <p>理科を学び、理科について何か気づきのある、そんなホームページです。</p>
         </div>
 
-        <!-- 🧪 ランダム名言ディスプレイエリア -->
+        <div class="counter-box">
+            <span>📊 累計訪問科学者数：</span>
+            <span class="counter-number" id="access-counter">計 —— 名</span>
+        </div>
+
         <div class="quote-box">
             <div class="quote-text" id="display-quote-text">「探査中...」</div>
             <div class="quote-author" id="display-quote-author">―― 科学者</div>
         </div>
 
         <div class="notice-box">
-            📢 ホームページはこれからいろいろアップデートしていくよ！新しいカテゴリーの記事も追加予定なのでお楽しみに！
+            📢 ホームページはこれからいろいろアップデートしていくよ！新しいコンテンツの執筆も進めているのでお楽しみに！
         </div>
 
-        <div class="creator-work-section">
+        <div class="content-section" id="column">
+            <h3 class="section-title">📄 理科コラム</h3>
+            <div class="column-grid">
+                <a href="#" class="column-card" onclick="alert('コラム記事は現在執筆中だ！アップデートを待て！'); return false;">
+                    <div>
+                        <span class="column-tag">身の回りの科学</span>
+                        <h4>なぜ空は青くて夕焼けは赤いの？</h4>
+                    </div>
+                    <p>光の「散乱」という現象を、中学生にもわかりやすく解説します。</p>
+                </a>
+                <a href="#" class="column-card" onclick="alert('コラム記事は現在執筆中だ！アップデートを待て！'); return false;">
+                    <div>
+                        <span class="column-tag">実験の裏話</span>
+                        <h4>オオカナダモの観察で気づく生命の神秘</h4>
+                    </div>
+                    <p>顕微鏡の向こう側で動く「細胞質流動」に隠された植物の知恵とは？</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="content-section" id="tools">
+            <h3 class="section-title">✏️ 勉強ツール</h3>
+            <div class="tool-list">
+                <div class="tool-item">
+                    <div class="tool-info">
+                        <h4>🧪 元素記号・化学式デジタルカード</h4>
+                        <p>テストに必ず出る重要化学式を、スマホやタブレットでサクサク暗記できるカードツール（準備中）。</p>
+                    </div>
+                    <a href="#" class="tool-btn" onclick="alert('ツールは現在開発中だ！楽しみに待っていてほしい！'); return false;">開く</a>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-info">
+                        <h4>📝 定期テスト直前チェックシート（PDF）</h4>
+                        <p>記述問題で絶対に落とせない重要ワードと、その記述のコツをまとめた極秘プリント（準備中）。</p>
+                    </div>
+                    <a href="#" class="tool-btn" onclick="alert('プリントは現在準備中だ！楽しみに待っていてほしい！'); return false;">ダウンロード</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="creator-work-section" id="game">
             <h3 class="section-title">🕹️ 作者がこんなこともやってます！</h3>
             <p class="work-desc">
                 当サイトの管理人が自作した、理科の知識でサバイバルする学習ミニゲームポータルです。<br>
                 授業の復習や、ちょっとした力試しにぜひ挑戦してみてください！
             </p>
             
-            <!-- 💡 リンク先を指定の公開URLへ書き換えました -->
             <a href="https://96da44kazu-debug.github.io/rika-game-ex/" class="rikagame-banner-link">
                 <div class="rikagame-logo-area">
                     <span class="rikagame-main-title">リカゲーム</span>
@@ -275,18 +462,34 @@
     </div>
 
     <footer>
-        最終更新日：2026年7月5日 | © よい科学者育成所 All Rights Reserved.
+        最終更新日：2026年7月7日 | © よい科学者育成所 All Rights Reserved.
     </footer>
 
     <script>
         window.onload = function() {
+            // 🎲 名言のランダム表示
             if (typeof SCIENTIST_QUOTES !== 'undefined' && SCIENTIST_QUOTES.length > 0) {
                 const randomIndex = Math.floor(Math.random() * SCIENTIST_QUOTES.length);
                 const chosenQuote = SCIENTIST_QUOTES[randomIndex];
-                
                 document.getElementById('display-quote-text').innerText = `“ ${chosenQuote.text} ”`;
                 document.getElementById('display-quote-author').innerText = `―― ${chosenQuote.author}`;
             }
+
+            // 📊 リアルタイムアクセスカウンター（リロードしても数値が蓄積される世界共通の信頼できる無料APIを使用）
+            const namespace = "96da44kazu-debug-rika-game";
+            const key = "portal-home-v1";
+            
+            fetch(`https://api.counterapi.dev/v1/${namespace}/${key}/hit`)
+                .then(response => response.json())
+                .then(data => {
+                    if(data && data.value) {
+                        document.getElementById('access-counter').innerText = `計 ${data.value} 名`;
+                    }
+                })
+                .catch(error => {
+                    console.log("Counter Error:", error);
+                    document.getElementById('access-counter').innerText = "通信中...";
+                });
         };
     </script>
 </body>
