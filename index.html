@@ -88,23 +88,28 @@
             font-weight: 500;
         }
 
-        /* 📊 画像式・超安定アクセスカウンターエリア */
+        /* 📊 【新設】アクセスカウンターエリア（数字が累積保存される仕組み） */
         .counter-box {
             text-align: center;
             margin: -10px auto 30px auto;
-            padding: 12px 25px;
+            padding: 10px 20px;
             background: #f8fafc;
-            border-radius: 12px;
+            border-radius: 30px;
             max-width: 340px;
             border: 1px solid #e2e8f0;
             font-size: 0.9rem;
             color: #475569;
             font-weight: bold;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 8px;
+        }
+        .counter-number {
+            color: #007bff;
+            font-size: 1.1rem;
+            font-family: monospace, sans-serif;
+            letter-spacing: 1px;
         }
 
         /* 🧪 科学者の名言ディスプレイエリア */
@@ -164,7 +169,7 @@
             padding-left: 10px;
         }
 
-        /* 📄 理科コラムカードグリッド */
+        /* 📄 【新設】理科コラムカードグリッド */
         .column-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -214,7 +219,7 @@
             color: #64748b;
         }
 
-        /* ✏️ 勉強ツールリスト */
+        /* ✏️ 【新設】勉強ツールリスト */
         .tool-list {
             list-style: none;
             display: flex;
@@ -360,6 +365,7 @@
             .tool-btn { align-self: flex-end; }
         }
     </style>
+    <script src="quotes_data.js"></script>
 </head>
 <body>
 
@@ -382,8 +388,8 @@
         </div>
 
         <div class="counter-box">
-            <span style="margin-bottom: 5px;">📊 累計訪問科学者数</span>
-            <img src="https://moe-counter.glitch.me/get/@96da44kazu-debug-rika-v1?theme=asoul" alt="Access Counter" style="height: 28px; vertical-align: middle;">
+            <span>📊 累計訪問科学者数：</span>
+            <span class="counter-number" id="access-counter">計 —— 名</span>
         </div>
 
         <div class="quote-box">
@@ -460,22 +466,30 @@
     </footer>
 
     <script>
-        // 🔬 【内蔵化】外部ファイル読み込みエラーを防ぐため、名言をここに直に埋め込みました
-        const BUILTIN_QUOTES = [
-            { text: "大切なのは、疑問を持ち続けることだ。神聖な好奇心を失ってはならない。", author: "アルベルト・アインシュタイン" },
-            { text: "空想は知識より重要である。知識には限界があるが、空想は世界を包み込む。", author: "アルベルト・アインシュタイン" },
-            { text: "私は実験を愛する。それこそが真の科学の母であるからだ。", author: "マイケル・ファラデー" },
-            { text: "自然は、数学という言語で書かれている。", author: "ガリレオ・ガリレイ" },
-            { text: "私は失敗したことがない。ただ、うまくいかない方法を1万通り見つけただけだ。", author: "トーマス・エジソン" },
-            { text: "科学の進歩を止めることはできない。ただそれを受け入れ、正しく導くことだけができる。", author: "マリー・キュリー" }
-        ];
-
         window.onload = function() {
-            // 🎲 名言のランダム表示（内蔵データから安全に抽選）
-            const randomIndex = Math.floor(Math.random() * BUILTIN_QUOTES.length);
-            const chosenQuote = BUILTIN_QUOTES[randomIndex];
-            document.getElementById('display-quote-text').innerText = `“ ${chosenQuote.text} ”`;
-            document.getElementById('display-quote-author').innerText = `―― ${chosenQuote.author}`;
+            // 🎲 名言のランダム表示
+            if (typeof SCIENTIST_QUOTES !== 'undefined' && SCIENTIST_QUOTES.length > 0) {
+                const randomIndex = Math.floor(Math.random() * SCIENTIST_QUOTES.length);
+                const chosenQuote = SCIENTIST_QUOTES[randomIndex];
+                document.getElementById('display-quote-text').innerText = `“ ${chosenQuote.text} ”`;
+                document.getElementById('display-quote-author').innerText = `―― ${chosenQuote.author}`;
+            }
+
+            // 📊 リアルタイムアクセスカウンター（リロードしても数値が蓄積される世界共通の信頼できる無料APIを使用）
+            const namespace = "96da44kazu-debug-rika-game";
+            const key = "portal-home-v1";
+            
+            fetch(`https://api.counterapi.dev/v1/${namespace}/${key}/hit`)
+                .then(response => response.json())
+                .then(data => {
+                    if(data && data.value) {
+                        document.getElementById('access-counter').innerText = `計 ${data.value} 名`;
+                    }
+                })
+                .catch(error => {
+                    console.log("Counter Error:", error);
+                    document.getElementById('access-counter').innerText = "通信中...";
+                });
         };
     </script>
 </body>
